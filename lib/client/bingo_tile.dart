@@ -5,7 +5,8 @@ class BingoTile extends StatefulWidget {
   final void Function(BingoTileState) onClickCallback;
   final String text;
 
-  const BingoTile({super.key, required this.text, required this.onClickCallback});
+  const BingoTile(
+      {super.key, required this.text, required this.onClickCallback});
 
   @override
   State<StatefulWidget> createState() => BingoTileState();
@@ -39,7 +40,8 @@ class BingoTileState extends State<BingoTile> {
               Image.asset(
                 "assets/BorderedBox.png",
                 fit: BoxFit.fill,
-                scale: 0.2, // somehow makes it scale, i should know this but i don't so whatever
+                scale:
+                    0.2, // somehow makes it scale, i should know this but i don't so whatever
                 opacity: const AlwaysStoppedAnimation(0.7),
               ),
               AutoSizeText(
@@ -48,10 +50,11 @@ class BingoTileState extends State<BingoTile> {
                 style: bingoTextStyle,
                 textAlign: TextAlign.center,
               ),
-              Image.network(
-                'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Red_X.svg/1200px-Red_X.svg.png',
-                opacity: AlwaysStoppedAnimation(_clicked ? 0.8 : 0),
-              ),
+              if (_clicked)
+                Image.network(
+                  'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Red_X.svg/1200px-Red_X.svg.png',
+                  opacity: AlwaysStoppedAnimation(_clicked ? 0.8 : 0),
+                ),
             ],
           ),
         ),

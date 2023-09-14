@@ -29,11 +29,17 @@ class ClientViewState extends State<ClientView> {
     return List<String>.from(widget.allBingoTiles);
   }
 
-  double getBingoSpacing(BuildContext context) {
+  TextStyle getBingoTitleStyle(BuildContext context) {
     var siz = MediaQuery.of(context).size;
     var minimum = min(siz.width, siz.height);
-    const coeff = 0.8;
-    return minimum * coeff / 6;
+
+    double fontSize = max(minimum / 40, 12);
+    double coeff = (minimum - 2 * fontSize) / minimum;
+
+    return bingoTextStyle.copyWith(
+      letterSpacing: (minimum - (8 * fontSize)) * coeff / 5,
+      fontSize: fontSize,
+    );
   }
 
   double getFractionOfMin(BuildContext context, bool isWidth) {
@@ -108,7 +114,8 @@ class ClientViewState extends State<ClientView> {
                       Text(
                         "Plus5",
                         textScaleFactor: 2,
-                        style: bingoTextStyle.copyWith(letterSpacing: getBingoSpacing(context)),
+                        // textAlign: TextAlign.center,
+                        style: getBingoTitleStyle(context),
                       ),
                       Flexible(
                         fit: FlexFit.tight,
@@ -138,7 +145,9 @@ class ClientViewState extends State<ClientView> {
                         children: [
                           IconButton(
                             onPressed: () {
-                              bingoScreenshotter.capture().then((Uint8List? image) {
+                              bingoScreenshotter
+                                  .capture()
+                                  .then((Uint8List? image) {
                                 if (image != null) {
                                   // first alert the user of the copy
                                   showDialog(
@@ -149,20 +158,25 @@ class ClientViewState extends State<ClientView> {
                                             "Copied Your Screenshot!",
                                             textAlign: TextAlign.center,
                                             style: bingoTextStyle.copyWith(
-                                              color: const Color.fromARGB(255, 217, 243, 255),
+                                              color: const Color.fromARGB(
+                                                  255, 217, 243, 255),
                                             ),
                                           ),
                                           content: Image.memory(image),
                                           backgroundColor: Colors.black,
                                           actions: [
                                             TextButton(
-                                              onPressed: () => Navigator.pop(contexto, 'ok cool'),
-                                              style: const ButtonStyle(alignment: Alignment.topCenter),
+                                              onPressed: () => Navigator.pop(
+                                                  contexto, 'ok cool'),
+                                              style: const ButtonStyle(
+                                                  alignment:
+                                                      Alignment.topCenter),
                                               child: Text(
                                                 'ok cool',
                                                 textAlign: TextAlign.center,
                                                 style: bingoTextStyle.copyWith(
-                                                  color: const Color.fromARGB(255, 217, 243, 255),
+                                                  color: const Color.fromARGB(
+                                                      255, 217, 243, 255),
                                                 ),
                                               ),
                                             ),
@@ -182,10 +196,17 @@ class ClientViewState extends State<ClientView> {
                               });
                             },
                             color: const Color.fromARGB(155, 30, 30, 30),
-                            icon: Image.network(
+                            icon: Text(
+                              "PLEASE CLICK ME",
+                              style: bingoTextStyle.copyWith(
+                                fontSize: 24,
+                                color: Colors.blue,
+                              ),
+                            ),
+                            /*Image.network(
                               "https://files.softicons.com/download/toolbar-icons/mono-general-icons-2-by-custom-icon-design/png/512x512/copy.png",
                               color: Colors.white70,
-                            ),
+                            ),*/
                           ),
                           Text(
                             "Estimated $_points pts",
@@ -208,7 +229,8 @@ class ClientViewState extends State<ClientView> {
 class TopTitleSingleChild extends SingleChildLayoutDelegate {
   final int itemsHashCode;
   final double paddingHeightFraction;
-  TopTitleSingleChild({required this.itemsHashCode, this.paddingHeightFraction = 0.0});
+  TopTitleSingleChild(
+      {required this.itemsHashCode, this.paddingHeightFraction = 0.0});
 
   @override
   Offset getPositionForChild(Size size, Size childSize) {
