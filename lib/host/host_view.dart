@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class HostView extends StatefulWidget {
-  const HostView({super.key});
+  final Widget button;
+  const HostView({super.key, required this.button});
 
   @override
   State createState() => HostViewState();
@@ -10,7 +11,12 @@ class HostView extends StatefulWidget {
 class HostViewState extends State<HostView> {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        Image.asset("assets/dark_background.jpg"),
+        widget.button,
+      ],
+    );
   }
 }
