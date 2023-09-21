@@ -19,8 +19,51 @@ class RealMainMenu extends StatelessWidget {
     return Scaffold(
       body: Stack(
         alignment: Alignment.center,
+        fit: StackFit.expand,
         children: [
-          Image.asset("assets/background.jpg"),
+          Image.asset(
+            "assets/background.jpg",
+            fit: BoxFit.fill,
+            scale: .50,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              // h0st button
+              InkWell(
+                onTap: () {
+                  Navigator.pushNamed(context, "/host");
+                },
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Image.asset("assets/FourCornersExample.png"),
+                    const Text(
+                      "Host",
+                      style: buttonTextStyle,
+                    ),
+                  ],
+                ),
+              ),
+
+              // client button
+              InkWell(
+                onTap: () {
+                  Navigator.pushNamed(context, "/client");
+                },
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Image.asset("assets/BoxExample.png"),
+                    const Text(
+                      "Client",
+                      style: buttonTextStyle,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );
@@ -46,7 +89,7 @@ class MainMenuState extends State<MainMenu> {
             ),
         "/host": (BuildContext context) => HostView(
               button: TextButton(
-                child: Text("Go to Client View"),
+                child: const Text("Go to Client View"),
                 onPressed: () {
                   Navigator.pushNamed(context, "/client");
                 },
@@ -56,3 +99,12 @@ class MainMenuState extends State<MainMenu> {
     );
   }
 }
+
+const buttonTextStyle = TextStyle(
+  color: Colors.white,
+  fontSize: 128,
+  fontFamily: "Bombardier",
+  shadows: [
+    Shadow(offset: Offset(1, 1), color: Colors.black),
+  ],
+);
