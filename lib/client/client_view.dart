@@ -13,25 +13,6 @@ class ClientView extends StatefulWidget {
 }
 
 class ClientViewState extends State<ClientView> {
-  late Uint8List _imageFile;
-  int _points = 0;
-  ScreenshotController bingoScreenshotter = ScreenshotController();
-
-  String getTitle() {
-    switch (widget.width) {
-      case 5:
-        return "Plus5";
-      case 6:
-        return "Plus5!";
-      case 7:
-        return "Eclipse";
-      case 8:
-        return "Eclipse8";
-      default:
-        return "BingoButAwesome".substring(0, widget.width);
-    }
-  }
-
   List<String> getBoard() {
     return List<String>.from(widget.allBingoTiles);
   }

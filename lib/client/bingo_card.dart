@@ -62,6 +62,21 @@ class BingoCardState extends State<BingoCard> {
     return tiles;
   }
 
+  String getTitle() {
+    switch (widget.width) {
+      case 5:
+        return "Plus5";
+      case 6:
+        return "Plus5!";
+      case 7:
+        return "Eclipse";
+      case 8:
+        return "Eclipse8";
+      default:
+        return "BingoButAwesome".substring(0, widget.width);
+    }
+  }
+
   void displayScreenshot(Uint8List? image) {
     if (image == null) return;
 
@@ -120,7 +135,7 @@ class BingoCardState extends State<BingoCard> {
           Column(
             children: [
               Text(
-                "Plus5",
+                getTitle(),
                 textScaleFactor: 2,
                 // textAlign: TextAlign.center,
                 style: getBingoTitleStyle(context),
