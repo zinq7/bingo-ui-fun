@@ -95,6 +95,7 @@ class ClientViewState extends State<ClientView> {
       child: Directionality(
         textDirection: TextDirection.ltr,
         child: Stack(
+          fit: StackFit.expand,
           alignment: Alignment.center,
           children: [
             Image.asset(

@@ -1,4 +1,5 @@
 import 'package:better_bingo/server/client_from_code.dart';
+import 'package:better_bingo/ui/bordered_button_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:better_bingo/client/client_view.dart';
 import 'package:better_bingo/host/host_view.dart';
@@ -16,6 +17,8 @@ class RealMainMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+
     return Scaffold(
       body: Stack(
         alignment: Alignment.center,
@@ -26,7 +29,8 @@ class RealMainMenu extends StatelessWidget {
             fit: BoxFit.fill,
             scale: .50,
           ),
-          Row(
+          Flex(
+            direction: (size.width > 600) ? Axis.horizontal : Axis.vertical,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               // h0st button
@@ -34,15 +38,12 @@ class RealMainMenu extends StatelessWidget {
                 onTap: () {
                   Navigator.pushNamed(context, "/host");
                 },
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    Image.asset("assets/FourCornersExample.png"),
-                    const Text(
-                      "Host",
-                      style: buttonTextStyle,
-                    ),
-                  ],
+                child: const BorderedButtonIcon(
+                  "HOST",
+                  width: 400,
+                  height: 300,
+                  borderWidth: 4,
+                  style: buttonTextStyle,
                 ),
               ),
 
