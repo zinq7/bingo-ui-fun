@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 class BorderedButtonIcon extends StatelessWidget {
@@ -12,7 +13,7 @@ class BorderedButtonIcon extends StatelessWidget {
     this.text, {
     super.key,
     this.borderWidth = 4,
-    this.backgroundColor = const Color.fromARGB(255, 100, 100, 100),
+    this.backgroundColor = const Color.fromARGB(199, 25, 22, 31),
     this.borderColor = const Color.fromARGB(255, 0, 0, 0),
     this.style,
     this.defaultMatValues,
@@ -28,11 +29,12 @@ class BorderedButtonIcon extends StatelessWidget {
       height: height,
       decoration: BoxDecoration(
         color: backgroundColor,
+        borderRadius: const BorderRadius.all(Radius.circular(32)),
         boxShadow: const [
           BoxShadow(
             blurRadius: 5,
             offset: Offset(2, 2),
-            color: Colors.black,
+            color: Color.fromARGB(108, 0, 0, 0),
           )
         ],
         border: Border.all(
@@ -40,8 +42,9 @@ class BorderedButtonIcon extends StatelessWidget {
           width: borderWidth,
         ),
       ),
-      child: Text(
+      child: AutoSizeText(
         text,
+        maxLines: 1,
         textAlign: TextAlign.center,
         style: style,
       ),

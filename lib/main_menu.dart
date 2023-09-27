@@ -1,3 +1,5 @@
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:better_bingo/client/bingo_tile.dart';
 import 'package:better_bingo/server/client_from_code.dart';
 import 'package:better_bingo/ui/bordered_button_icon.dart';
 import 'package:flutter/material.dart';
@@ -29,39 +31,63 @@ class RealMainMenu extends StatelessWidget {
             fit: BoxFit.fill,
             scale: .50,
           ),
-          Flex(
-            direction: (size.width > 600) ? Axis.horizontal : Axis.vertical,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          Image.asset(
+            'assets/ResLogo.webp',
+            opacity: const AlwaysStoppedAnimation(0.4),
+          ),
+          Column(
             children: [
-              // h0st button
-              InkWell(
-                onTap: () {
-                  Navigator.pushNamed(context, "/host");
-                },
-                child: const BorderedButtonIcon(
-                  "HOST",
-                  width: 400,
-                  height: 300,
-                  borderWidth: 4,
-                  style: buttonTextStyle,
+              SizedBox(
+                height: size.width > 800
+                    ? size.height / 2 - 100
+                    : size.height / 2 - 200,
+                child: AutoSizeText(
+                  "RoRes BINGO",
+                  minFontSize: 32,
+                  wrapWords: false,
+                  maxLines: 1,
+                  style: buttonTextStyle.copyWith(
+                    fontSize: 128.0,
+                  ),
                 ),
               ),
-
-              // client button
-              InkWell(
-                onTap: () {
-                  Navigator.pushNamed(context, "/client");
-                },
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    Image.asset("assets/BoxExample.png"),
-                    const Text(
-                      "Client",
-                      style: buttonTextStyle,
+              Flex(
+                direction: (size.width > 800) ? Axis.horizontal : Axis.vertical,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  // h0st button
+                  Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(context, "/host");
+                      },
+                      child: const BorderedButtonIcon(
+                        "HOST",
+                        width: 400,
+                        height: 200,
+                        borderWidth: 4,
+                        style: buttonTextStyle,
+                      ),
                     ),
-                  ],
-                ),
+                  ),
+                  // client button
+                  Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(context, "/client");
+                      },
+                      child: const BorderedButtonIcon(
+                        "CLIENT",
+                        width: 400,
+                        height: 200,
+                        borderWidth: 4,
+                        style: buttonTextStyle,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
@@ -103,9 +129,15 @@ class MainMenuState extends State<MainMenu> {
 
 const buttonTextStyle = TextStyle(
   color: Colors.white,
-  fontSize: 128,
+  fontSize: 96,
   fontFamily: "Bombardier",
+  letterSpacing: 4,
+  fontWeight: FontWeight.w300,
   shadows: [
-    Shadow(offset: Offset(1, 1), color: Colors.black),
+    Shadow(
+      offset: Offset(4, 4),
+      color: Colors.black,
+      blurRadius: 5,
+    ),
   ],
 );
