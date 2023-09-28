@@ -46,7 +46,7 @@ class BingoTileState extends State<BingoTile> {
               ),
               AutoSizeText(
                 widget.text,
-                maxLines: (widget.text.length ~/ 15) + 1,
+                maxLines: (widget.text.length ~/ 10) + 1,
                 style: bingoTextStyle,
                 textAlign: TextAlign.center,
               ),

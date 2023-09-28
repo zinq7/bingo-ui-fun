@@ -20,6 +20,8 @@ class RealMainMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+    var expandedLayout = size.width > 900;
+    var rotatedMobile = size.width > size.height;
 
     return Scaffold(
       body: Stack(
@@ -38,34 +40,41 @@ class RealMainMenu extends StatelessWidget {
           Column(
             children: [
               SizedBox(
-                height: size.width > 800
+                height: expandedLayout
                     ? size.height / 2 - 100
                     : size.height / 2 - 200,
-                child: AutoSizeText(
-                  "RoRes BINGO",
-                  minFontSize: 32,
-                  wrapWords: false,
-                  maxLines: 1,
-                  style: buttonTextStyle.copyWith(
-                    fontSize: 128.0,
+                child: Align(
+                  alignment:
+                      expandedLayout ? Alignment.topCenter : Alignment.center,
+                  child: AutoSizeText(
+                    "RoRes BINGO",
+                    minFontSize: 32,
+                    wrapWords: false,
+                    maxLines: 1,
+                    style: buttonTextStyle.copyWith(
+                      fontSize: 128.0,
+                    ),
                   ),
                 ),
               ),
               Flex(
-                direction: (size.width > 800) ? Axis.horizontal : Axis.vertical,
+                direction: (expandedLayout || rotatedMobile)
+                    ? Axis.horizontal
+                    : Axis.vertical,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   // h0st button
                   Padding(
-                    padding: const EdgeInsets.all(8),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 12.5, horizontal: 25),
                     child: InkWell(
                       onTap: () {
                         Navigator.pushNamed(context, "/host");
                       },
-                      child: const BorderedButtonIcon(
+                      child: BorderedButtonIcon(
                         "HOST",
-                        width: 400,
-                        height: 200,
+                        width: rotatedMobile ? size.width / 3 : 400,
+                        height: rotatedMobile ? 150 : 200,
                         borderWidth: 4,
                         style: buttonTextStyle,
                       ),
@@ -73,15 +82,16 @@ class RealMainMenu extends StatelessWidget {
                   ),
                   // client button
                   Padding(
-                    padding: const EdgeInsets.all(8),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 12.5, horizontal: 25),
                     child: InkWell(
                       onTap: () {
                         Navigator.pushNamed(context, "/client");
                       },
-                      child: const BorderedButtonIcon(
+                      child: BorderedButtonIcon(
                         "CLIENT",
-                        width: 400,
-                        height: 200,
+                        width: rotatedMobile ? size.width / 3 : 400,
+                        height: rotatedMobile ? 150 : 200,
                         borderWidth: 4,
                         style: buttonTextStyle,
                       ),
