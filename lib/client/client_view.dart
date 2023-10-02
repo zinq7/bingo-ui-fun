@@ -1,20 +1,25 @@
 import 'dart:ui';
+import 'package:better_bingo/server/bingo_info_from_code.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:better_bingo/client/bingo_card.dart';
 
 class ClientView extends StatefulWidget {
-  final List allBingoTiles;
+  final String code;
 
-  const ClientView({super.key, required this.allBingoTiles});
+  const ClientView({super.key, required this.code});
 
   @override
   createState() => ClientViewState();
 }
 
 class ClientViewState extends State<ClientView> {
+  late final List _tiles;
+
   List<String> getBoard() {
-    return List<String>.from(widget.allBingoTiles);
+    _tiles = getBingoFromCode(widget.code);
+
+    return List<String>.from(_tiles);
   }
 
   @override
@@ -57,7 +62,8 @@ class ClientViewState extends State<ClientView> {
 class TopTitleSingleChild extends SingleChildLayoutDelegate {
   final int itemsHashCode;
   final double paddingHeightFraction;
-  TopTitleSingleChild({required this.itemsHashCode, this.paddingHeightFraction = 0.0});
+  TopTitleSingleChild(
+      {required this.itemsHashCode, this.paddingHeightFraction = 0.0});
 
   @override
   Offset getPositionForChild(Size size, Size childSize) {
