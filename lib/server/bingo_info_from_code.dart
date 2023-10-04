@@ -1,19 +1,32 @@
 List getBingoFromCode(String code) {
+  List allBingo = [code];
+
   // TESTING ROUTE, WITHOUT COMMS
-  if (true || code == "TEST") {
-    List allBingo = [code];
+  if (code == "TEST") {
     allBingo.addAll([
-      "hey",
-      "Longer sentence",
-      "really fucking long sentece",
-      "Player gets hit my a beetle queen and dies"
+      "Bing",
+      "Go",
+      "Brrr",
+      "bop",
+      "boggers, my favourite word",
+      "Brass",
+      "bringing",
+      "Binging"
     ]);
-    for (int i = allBingo.length; i < 30; i++) {
-      allBingo.add(i.toString());
-    }
-    return allBingo;
+  } else if (code == "CODE") {
+    allBingo.addAll([
+      "What",
+      "Wombat",
+      "Who said What",
+      "Why can't i type",
+      "Semicolon",
+    ]);
+  }
+
+  for (int i = allBingo.length; i < 30; i++) {
+    allBingo.add(i.toString());
   }
 
   // footer
-  return [];
+  return allBingo;
 }

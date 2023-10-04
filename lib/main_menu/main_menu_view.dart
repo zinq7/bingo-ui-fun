@@ -4,7 +4,8 @@ import 'package:better_bingo/main_menu/bordered_button_icon.dart';
 import 'package:flutter/material.dart';
 
 class MainMenuView extends StatelessWidget {
-  const MainMenuView({super.key});
+  final Function(String) callback;
+  const MainMenuView({super.key, required this.callback});
 
   @override
   Widget build(BuildContext context) {
@@ -84,6 +85,18 @@ class MainMenuView extends StatelessWidget {
                         height: rotatedMobile ? 150 : 200,
                         borderWidth: 4,
                         style: buttonTextStyle,
+                      ),
+                    ),
+                  ),
+                  // text field
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 12.5, horizontal: 25),
+                    child: SizedBox(
+                      width: 400,
+                      height: 300,
+                      child: TextField(
+                        onChanged: callback,
                       ),
                     ),
                   ),

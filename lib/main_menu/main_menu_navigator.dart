@@ -20,14 +20,14 @@ class MainMenuState extends State<MainMenu> {
     print("building main menu navigator");
     if (_code == "null") {
       setState(() => _code = widget.code);
-    } else {
-      setState(() => _code = "${_code}h");
     }
 
     return MaterialApp(
       initialRoute: "/main",
       routes: {
-        "/main": (BuildContext context) => const MainMenuView(),
+        "/main": (BuildContext context) => MainMenuView(callback: (String txt) {
+              setState(() => _code = txt);
+            }),
         "/client": (BuildContext context) => ClientView(
               // this'll be a main menu soon(tm)
               code: _code,
