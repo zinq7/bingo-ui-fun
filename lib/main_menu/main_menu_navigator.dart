@@ -40,6 +40,7 @@ class MainMenuState extends State<MainMenu> {
                 },
               ),
             ),
+        "/passsword": (BuildContext context) => PasswordBlock(),
       },
     );
   }
