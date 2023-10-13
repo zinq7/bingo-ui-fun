@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:better_bingo/client/client_view.dart';
 import 'package:better_bingo/host/host_view.dart';
 import 'package:better_bingo/main_menu/main_menu_view.dart';
+import 'package:better_bingo/password_block/account_input.dart';
 
 class MainMenu extends StatefulWidget {
   final String code;
@@ -40,7 +41,7 @@ class MainMenuState extends State<MainMenu> {
                 },
               ),
             ),
-        "/passsword": (BuildContext context) => PasswordBlock(),
+        "/passsword": (BuildContext context) => const AccountInput(),
       },
     );
   }
