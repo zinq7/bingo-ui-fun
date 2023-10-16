@@ -21,7 +21,7 @@ class AccountInputState extends State<AccountInput> {
           height: double.infinity,
         ),
         const InputField(
-          inputFields: ["Username", "Password", "Description"],
+          inputFields: ["Username", "Password"],
         ),
       ],
     );
